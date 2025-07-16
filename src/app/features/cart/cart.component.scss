@@ -1,0 +1,40 @@
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-cart-btn {
+  min-width: 100px; /* optional: make button a consistent size */
+}
+
+.cart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* spacing between grid items */
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5f5f5;
+  padding: 12px 16px;
+  border-radius: 8px;
+  width: 240px; /* fixed width for each grid item */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.item-price {
+  color: #555;
+}

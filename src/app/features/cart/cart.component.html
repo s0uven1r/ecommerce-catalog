@@ -1,1 +1,41 @@
-<p>cart works!</p>
+<mat-card>
+  <mat-card-title>
+    <div class="title-container">
+      <span>Shopping Cart</span>
+      <button mat-raised-button color="primary" (click)="clearCart()" class="clear-cart-btn">
+        Clear Cart
+      </button>
+    </div>
+  </mat-card-title>
+
+  <mat-card-content>
+    <div *ngIf="cartItems$ | async as cartItems">
+      <div *ngIf="cartItems.length; else emptyCart">
+
+        <div class="cart-grid">
+          <div class="cart-item" *ngFor="let item of cartItems">
+            <div class="item-content">
+              <div class="item-name">{{ item.name }}</div>
+              <div class="item-price">Price: {{ item.price | currency }}</div>
+            </div>
+            <button mat-icon-button color="warn" aria-label="Remove item" (click)="removeItem(item.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Totals -->
+        <div class="cart-total">
+          Total Quantity: {{ totalCount$ | async | number }}
+        </div>
+        <div class="cart-total">
+          Total Price: {{ totalPrice$ | async | currency }}
+        </div>
+      </div>
+
+      <ng-template #emptyCart>
+        <p>Your cart is empty.</p>
+      </ng-template>
+    </div>
+  </mat-card-content>
+</mat-card>

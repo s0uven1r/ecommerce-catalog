@@ -2,5 +2,7 @@
     <a mat-button routerLink="/">My Shop</a>
     <span class="spacer"></span>
     <a mat-button routerLink="/products">Products</a>
-    <a mat-button routerLink="/cart">Cart</a>
+    <a mat-button routerLink="/cart">Cart
+        <span class="cart-badge" *ngIf="cartItemCount() > 0">{{ cartItemCount() }}</span>
+    </a>
 </mat-toolbar>
