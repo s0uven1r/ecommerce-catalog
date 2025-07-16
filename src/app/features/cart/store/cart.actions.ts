@@ -12,3 +12,15 @@ export const removeFromCart = createAction(
 );
 
 export const clearCart = createAction('[Cart] Clear Cart');
+
+export const checkout = createAction(
+  '[Cart] Checkout',
+  props<{ products: Product[] }>()
+);
+
+export const checkoutSuccess = createAction('[Cart] Checkout Success');
+
+export const checkoutFailure = createAction(
+  '[Cart] Checkout Failure',
+  props<{ error: any }>()
+);

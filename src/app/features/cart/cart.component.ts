@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 import { Product } from '../../core/models/product.model';
 
 import { selectCartItems, selectCartTotalPrice, selectCartTotalCount, } from './store/cart.selectors';
-import { removeFromCart, clearCart } from './store/cart.actions';
+import * as CartActions from './store/cart.actions';
+
 
 @Component({
   selector: 'app-cart',
@@ -31,10 +32,14 @@ export class CartComponent {
   }
 
   removeItem(productId: number) {
-    this.store.dispatch(removeFromCart({ productId }));
+    this.store.dispatch(CartActions.removeFromCart({ productId }));
   }
 
   clearCart() {
-    this.store.dispatch(clearCart());
+    this.store.dispatch(CartActions.clearCart());
+  }
+
+   checkout(items: Product[]) {
+    this.store.dispatch(CartActions.checkout({ products: items }));
   }
 }

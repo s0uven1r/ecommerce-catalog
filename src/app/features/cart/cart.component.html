@@ -2,7 +2,14 @@
   <mat-card-title>
     <div class="title-container">
       <span>Shopping Cart</span>
-      <button mat-raised-button color="primary" (click)="clearCart()" class="clear-cart-btn">
+      <!-- Clear Cart button only visible when items exist -->
+      <button
+        *ngIf="(cartItems$ | async)?.length"
+        mat-raised-button
+        color="warn"
+        (click)="clearCart()"
+        class="clear-cart-btn"
+      >
         Clear Cart
       </button>
     </div>
@@ -11,14 +18,18 @@
   <mat-card-content>
     <div *ngIf="cartItems$ | async as cartItems">
       <div *ngIf="cartItems.length; else emptyCart">
-
         <div class="cart-grid">
           <div class="cart-item" *ngFor="let item of cartItems">
             <div class="item-content">
               <div class="item-name">{{ item.name }}</div>
               <div class="item-price">Price: {{ item.price | currency }}</div>
             </div>
-            <button mat-icon-button color="warn" aria-label="Remove item" (click)="removeItem(item.id)">
+            <button
+              mat-icon-button
+              color="warn"
+              aria-label="Remove item"
+              (click)="removeItem(item.id)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -31,6 +42,11 @@
         <div class="cart-total">
           Total Price: {{ totalPrice$ | async | currency }}
         </div>
+
+        <!-- Checkout button -->
+        <button mat-raised-button color="primary" (click)="checkout(cartItems)">
+          Checkout
+        </button>
       </div>
 
       <ng-template #emptyCart>

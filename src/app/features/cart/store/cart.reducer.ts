@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { addToCart, removeFromCart, clearCart } from './cart.actions';
+import * as CartActions from './cart.actions';
 import { Product } from '../../../core/models/product.model';
 
 export interface CartState {
@@ -12,16 +12,25 @@ export const initialState: CartState = {
 
 export const cartReducer = createReducer(
   initialState,
-  on(addToCart, (state, { product }) => ({
+  on(CartActions.addToCart, (state, { product }) => ({
     ...state,
     items: [...state.items, product],
   })),
-  on(removeFromCart, (state, { productId }) => ({
+  on(CartActions.removeFromCart, (state, { productId }) => ({
     ...state,
     items: state.items.filter(item => item.id !== productId),
   })),
-  on(clearCart, state => ({
+  on(CartActions.clearCart, state => ({
     ...state,
     items: [],
+  })),
+  on(CartActions.checkoutSuccess, state => ({
+    ...state,
+    items: [],  // clear cart after successful checkout
+    error: undefined
+  })),
+  on(CartActions.checkoutFailure, (state, { error }) => ({
+    ...state,
+    error
   }))
 );
