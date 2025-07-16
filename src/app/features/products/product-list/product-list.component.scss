@@ -1,0 +1,36 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  padding: 24px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  mat-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  mat-card-content {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    margin: 8px 0;
+  }
+
+  mat-card-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  img {
+    width: 90%;
+    height: 100px;
+    object-fit: cover;
+  }
+}
