@@ -1,11 +1,4 @@
 # EcommerceCatalog
 
-src/app/
-│
-├── core/         # Core services, interceptors
-├── shared/       # Shared UI components, directives, pipes
-│   ├── standalone/   # Standalone UI parts (Header, Footer)
-├── features/     # Product, Cart, Admin modules/features
-│   ├── products/
-│   ├── cart/
-│   ├── admin/
+<img width="563" height="254" alt="image" src="https://github.com/user-attachments/assets/3d6e3943-3bc0-4118-a1e0-39f7c6860747" />
+
