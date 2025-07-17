@@ -5,6 +5,7 @@ import { Product } from '../models/product.model';
     providedIn: 'root'
 })
 export class ProductService {
+
     private products: Product[] = [
         {
             id: 1,
@@ -44,10 +45,25 @@ export class ProductService {
     ]
 
     getProducts() {
-        return this.products;
+       return [...this.products];
     }
 
     getProductById(id: number) {
         return this.products.find(p => p.id === id);
+    }
+
+    addProduct(product: Product): void {
+        this.products.push(product);
+    }
+
+    updateProduct(updated: Product): void {
+        const index = this.products.findIndex(p => p.id === updated.id);
+        if (index > -1) {
+            this.products[index] = updated;
+        }
+    }
+
+    deleteProduct(id: number): void {
+        this.products = this.products.filter(p => p.id !== id);
     }
 }
